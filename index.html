@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+      const domNode = document.getElementById('app')
+      const root = ReactDOM.createRoot(domNode)
+
+      function Header({ title }) {
+        return <h1>{title ? title : 'Develop. Preview. Ship.'}</h1>
+      }
+
+      function Homepage() {
+        const [likes, setLikes] = React.useState(0)
+
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
+
+        function handleClick() {
+          setLikes(likes + 1)
+          console.log('likes count incremented')
+        }
+
+        return (
+          <div>
+            <Header title='React' />
+            <Header />
+            <ul>
+              {names.map((name, index) => (
+                <li key={index}>{name}</li>
+              ))}
+            </ul>
+            <button onClick={handleClick}>Like({likes})</button>
+          </div>
+        )
+      }
+
+      root.render(<Homepage />)
+    </script>
+  </body>
+</html>
